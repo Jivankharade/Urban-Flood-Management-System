@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: urban-flood-nowcasting-api
+    runtime: java
+    rootDir: backend
+    buildCommand: ./mvnw clean package -DskipTests || mvn clean package -DskipTests
+    startCommand: java -jar target/flood-backend-0.1.0.jar
+    envVars:
+      - key: ALLOWED_ORIGINS
+        sync: false
+      - key: AI_ENGINE_URL
+        value: http://localhost:8000

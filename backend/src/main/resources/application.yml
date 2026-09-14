@@ -1,0 +1,10 @@
+server:
+  port: ${PORT:8080}
+spring:
+  application:
+    name: urban-flood-nowcasting
+app:
+  cors:
+    allowed-origins: ${ALLOWED_ORIGINS:http://localhost:5173}
+ai:
+  base-url: ${AI_ENGINE_URL:http://localhost:8000}

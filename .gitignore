@@ -1,0 +1,11 @@
+frontend/node_modules/
+frontend/dist/
+backend/target/
+ai-engine/.venv/
+__pycache__/
+*.py[cod]
+.env
+.env.*
+!.env.example
+.idea/
+.vscode/

@@ -1,0 +1,6 @@
+-- Prototype schema. Every seed value is synthetic / illustrative only.
+CREATE EXTENSION IF NOT EXISTS postgis;
+CREATE TABLE rainfall_readings (id BIGSERIAL PRIMARY KEY, location VARCHAR(100) NOT NULL, latitude DOUBLE PRECISION NOT NULL, longitude DOUBLE PRECISION NOT NULL, recorded_at TIMESTAMPTZ NOT NULL, rainfall_intensity DOUBLE PRECISION NOT NULL, rainfall_amount DOUBLE PRECISION NOT NULL, geom geometry(Point,4326));
+CREATE TABLE terrain_cells (id BIGSERIAL PRIMARY KEY, name VARCHAR(100) NOT NULL, latitude DOUBLE PRECISION NOT NULL, longitude DOUBLE PRECISION NOT NULL, elevation DOUBLE PRECISION NOT NULL, slope DOUBLE PRECISION NOT NULL, terrain_type VARCHAR(60) NOT NULL, historical_risk DOUBLE PRECISION NOT NULL, geom geometry(Point,4326));
+CREATE TABLE drain_nodes (id BIGSERIAL PRIMARY KEY, name VARCHAR(100) NOT NULL, latitude DOUBLE PRECISION NOT NULL, longitude DOUBLE PRECISION NOT NULL, elevation DOUBLE PRECISION NOT NULL, current_water_level DOUBLE PRECISION NOT NULL);
+CREATE TABLE drain_segments (id BIGSERIAL PRIMARY KEY, name VARCHAR(100) NOT NULL, source_node_id BIGINT REFERENCES drain_nodes(id), destination_node_id BIGINT REFERENCES drain_nodes(id), length_m DOUBLE PRECISION NOT NULL, diameter_m DOUBLE PRECISION NOT NULL, capacity_cumecs DOUBLE PRECISION NOT NULL, current_flow_cumecs DOUBLE PRECISION NOT NULL, status VARCHAR(20) NOT NULL);
