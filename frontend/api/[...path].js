@@ -92,7 +92,8 @@ function send(res, status, body) {
 
 export default function handler(req, res) {
   if (req.method === 'OPTIONS') return send(res, 204, null);
-  const path = new URL(req.url, 'http://localhost').pathname.replace(/^\/api\/?/, '').replace(/\/$/, '');
+  const requestUrl = new URL(req.url, 'http://localhost');
+  const path = (requestUrl.searchParams.get('path') || requestUrl.pathname.replace(/^\/api\/?/, '')).replace(/\/$/, '');
   if (req.method === 'GET' && path === 'rainfall') return send(res, 200, rainfallData());
   if (req.method === 'GET' && path === 'rainfall/latest') return send(res, 200, rainfallData()[0]);
   if (req.method === 'GET' && path === 'terrain') return send(res, 200, terrain);
