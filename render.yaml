@@ -1,10 +1,9 @@
 services:
   - type: web
     name: urban-flood-nowcasting-api
-    runtime: java
-    rootDir: backend
-    buildCommand: ./mvnw clean package -DskipTests || mvn clean package -DskipTests
-    startCommand: java -jar target/flood-backend-0.1.0.jar
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
     envVars:
       - key: ALLOWED_ORIGINS
         sync: false
